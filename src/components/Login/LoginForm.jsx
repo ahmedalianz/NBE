@@ -120,15 +120,15 @@ const styles = StyleSheet.create({
     color: COLORS.white,
   },
   link: {color: COLORS.link, textDecorationLine: 'underline'},
-  signupLinkContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: SIZES.xLarge,
-  },
   loginOptions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  signupLinkContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: SIZES.xLarge,
   },
   rememberMe: {
     flexDirection: 'row',
