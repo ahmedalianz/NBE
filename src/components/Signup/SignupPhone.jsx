@@ -2,18 +2,21 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {assets, COLORS, SIZES} from '../../constants';
 import {LoginInput} from '../Login';
+import {useTranslation} from 'react-i18next';
 export function SignupPhone() {
   const [phone, setPhone] = useState('');
+  const {t} = useTranslation();
   return (
     <View style={styles.phoneContainer}>
-      <Text style={[styles.title, {color: COLORS.white}]}>Mobile number</Text>
-      <Text style={[styles.sub_title, {color: '#B7B7B7'}]}>
-        Enter the mobile number registred in the bank
+      <Text style={[styles.title, {color: COLORS.white}]}>{t('Mobile')}</Text>
+      <Text style={[styles.sub_title, {color: COLORS.grey}]}>
+        {t('Enter_Phone')}
       </Text>
       <LoginInput
-        title="Mobile number"
+        title={t('Mobile')}
         borderColor="#12A759"
         titleColor="#12A759"
+        keyboardType="phone-pad"
         backgroundColor="#323F4B"
         image={assets.phone}
         input={phone}

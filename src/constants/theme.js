@@ -1,6 +1,8 @@
 export const COLORS = {
   primary: '#007236',
+  black: 'black',
   white: '#FFF',
+  grey: '#B7B7B7',
   link: '#F6A721',
 };
 export const SIZES = {

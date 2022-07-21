@@ -47,24 +47,14 @@ export function LoginHeader({
         !noNavigateBack && (
           <Pressable onPress={navigatePrevious}>
             <Image
-              source={
-                I18nManager.isRTL ? assets.arrow_back_green : assets.arrow_back
-              }
+              source={assets.arrow_back}
               resizeMode="cover"
               style={styles.lang}
             />
           </Pressable>
         )
       )}
-      <Image
-        source={
-          screenName === 'Signup' && I18nManager.isRTL
-            ? assets.logo_green
-            : assets.logo
-        }
-        resizeMode="cover"
-        style={styles.logo}
-      />
+      <Image source={assets.logo} resizeMode="cover" style={styles.logo} />
     </View>
   );
 }

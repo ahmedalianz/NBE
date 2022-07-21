@@ -5,6 +5,7 @@ import {
   ScrollView,
   View,
   Text,
+  I18nManager,
 } from 'react-native';
 import React from 'react';
 import {assets, SIZES} from '../constants';

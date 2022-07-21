@@ -30,33 +30,19 @@ export function FingerPrintModal({modalVisibility, setModalVisibility}) {
           resizeMode="cover"
         />
       </Pressable>
-      <View
-        style={[
-          styles.modalMain,
-          {backgroundColor: I18nManager.isRTL ? COLORS.white : 'black'},
-        ]}>
-        <Text
-          style={[
-            styles.header,
-            {color: I18nManager.isRTL ? 'black' : COLORS.white},
-          ]}>
+      <View style={[styles.modalMain, {backgroundColor: COLORS.black}]}>
+        <Text style={[styles.header, {color: COLORS.white}]}>
           {t('FingerPrint_header')}
         </Text>
-        <Text
-          style={[
-            styles.sub_header,
-            {color: I18nManager.isRTL ? 'black' : COLORS.white},
-          ]}>
+        <Text style={[styles.sub_header, {color: COLORS.white}]}>
           {t('FingerPrint_login')}
         </Text>
         <View style={styles.modalSensor}>
           <Image
-            source={
-              I18nManager.isRTL ? assets.sensor_light : assets.sensor_dark
-            }
+            source={assets.sensor_dark}
             style={{width: 100, height: 100}}
           />
-          <Text style={[styles.sub_header, {color: '#B7B7B7'}]}>
+          <Text style={[styles.sub_header, {color: COLORS.grey}]}>
             {t('FingerPrint_touch')}
           </Text>
         </View>

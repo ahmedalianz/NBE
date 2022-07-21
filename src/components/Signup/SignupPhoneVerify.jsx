@@ -1,11 +1,12 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {COLORS, SIZES} from '../../constants';
 import NumberInput from './NumberInput';
+import {useTranslation} from 'react-i18next';
 export function SignupPhoneVerify() {
   const [phone, setPhone] = useState('');
+  const {t} = useTranslation();
   const [interval, setIntervalTime] = useState(16);
-  const [numberStep, setNumberStep] = useState(1);
   useEffect(() => {
     let countDown = 16;
     const intervalTime = setInterval(() => {
@@ -17,26 +18,26 @@ export function SignupPhoneVerify() {
     }, 1000);
     return () => clearInterval(intervalTime);
   }, []);
-  const nextNumber = () => {
-    setNumberStep(val => val + 1);
-  };
-  console.log(numberStep);
   return (
     <View style={styles.phoneContainer}>
-      <Text style={[styles.title, {color: COLORS.white}]}>Verification</Text>
-      <Text style={[styles.sub_title, {color: '#B7B7B7'}]}>
-        Enter 5 digit code we sent to +20 101 131 5412
+      <Text style={[styles.title, {color: COLORS.white}]}>
+        {t('Verification')}
+      </Text>
+      <Text style={[styles.sub_title, {color: COLORS.grey}]}>
+        {t('Verification_message')} +20 101 131 5412
       </Text>
       <View style={styles.numbersContainer}>
-        <NumberInput nextNumber={nextNumber} focused={numberStep === 1} />
-        <NumberInput nextNumber={nextNumber} focused={numberStep === 2} />
-        <NumberInput nextNumber={nextNumber} focused={numberStep === 3} />
-        <NumberInput nextNumber={nextNumber} focused={numberStep === 4} />
-        <NumberInput focused={numberStep === 5} />
+        <NumberInput />
+        <NumberInput />
+        <NumberInput />
+        <NumberInput />
+        <NumberInput />
       </View>
       <View>
-        <Text style={styles.noRecive}>Didn’t receive the code?</Text>
-        <Text style={styles.countDown}>Request new one in 00:{interval}</Text>
+        <Text style={styles.noRecive}>{t('Verification_No_Receive')}</Text>
+        <Text style={styles.countDown}>
+          {t('Request_new')} 00:{interval}
+        </Text>
       </View>
     </View>
   );
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   noRecive: {
-    color: '#B7B7B7',
+    color: COLORS.grey,
     fontSize: SIZES.medium,
   },
   numbersContainer: {

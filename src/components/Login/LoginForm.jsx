@@ -53,8 +53,8 @@ export function LoginForm() {
             value={rememberMe}
             onValueChange={newValue => setRememberMe(newValue)}
             tintColors={{
-              true: I18nManager.isRTL ? COLORS.primary : COLORS.white,
-              false: '#B7B7B7',
+              true: COLORS.white,
+              false: COLORS.grey,
             }}
           />
           <Text

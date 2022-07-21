@@ -9,7 +9,7 @@ export default function PasswordVerificationText({title, invalid}) {
         style={[
           styles.circle,
           {
-            backgroundColor: invalid ? '#B7B7B7' : COLORS.primary,
+            backgroundColor: invalid ? COLORS.grey : COLORS.primary,
           },
         ]}></View>
       <Text style={styles.textVerification}>{title}</Text>
