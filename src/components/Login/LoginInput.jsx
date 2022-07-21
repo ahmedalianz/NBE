@@ -5,13 +5,11 @@ import {
   Animated,
   StyleSheet,
   Image,
-  I18nManager,
   Pressable,
   TouchableNativeFeedback,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {assets, COLORS, SIZES} from '../../constants';
-
 export function LoginInput({
   borderColor,
   backgroundColor,
@@ -22,6 +20,7 @@ export function LoginInput({
   marginTop,
   input,
   setInput,
+  keyboardType = 'default',
 }) {
   const moveText = useRef(new Animated.Value(0)).current;
   const textRef = useRef(null);
@@ -101,10 +100,11 @@ export function LoginInput({
           onChangeText={setInput}
           blurOnSubmit
           onEndEditing={inputBlur}
+          keyboardType={keyboardType}
           secureTextEntry={secureText}
           style={[
             styles.inputText,
-            {color: name === 'Username' ? COLORS.white : 'black'},
+            {color: name === 'Username' ? COLORS.white : COLORS.black},
           ]}
         />
         {name === 'Password' && (
@@ -112,7 +112,7 @@ export function LoginInput({
             style={[styles.inputIcon, {right: 22}]}
             onPress={changeSecureTextEntry}>
             <Image
-              source={I18nManager.isRTL ? assets.eye_light : assets.eye}
+              source={assets.eye}
               style={{width: '100%', height: '100%'}}
               resizeMode="contain"
             />

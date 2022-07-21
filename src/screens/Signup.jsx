@@ -18,9 +18,11 @@ import {assets, COLORS, SIZES} from '../constants';
 import {LoginHeader} from '../components/Login';
 import SignupSetPassword from '../components/Signup/SignupSetPassword';
 import SignupSuccess from '../components/Signup/SignupSuccess';
+import {useTranslation} from 'react-i18next';
 
 export function Signup() {
   const [signUpStep, setSignUpStep] = useState(1);
+  const {t} = useTranslation();
   const nextStep = () => {
     setSignUpStep(step => step + 1);
   };
@@ -31,16 +33,11 @@ export function Signup() {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor:
-          signUpStep < 4
-            ? I18nManager.isRTL
-              ? COLORS.white
-              : '#1F2933'
-            : COLORS.primary,
+        backgroundColor: signUpStep < 4 ? '#1F2933' : COLORS.primary,
       }}>
       {signUpStep === 4 && (
         <Image
-          style={styles.backImage}
+          style={[styles.backImage, {transform: [{scaleX: -1}]}]}
           source={assets.back_success}
           resizeMode="cover"
           resizeMethod="resize"
@@ -65,14 +62,14 @@ export function Signup() {
         {signUpStep === 1 && <SignupFooter nextStep={nextStep} />}
         {(signUpStep === 2 || signUpStep === 3) && (
           <TouchableOpacity style={styles.buttonContainer} onPress={nextStep}>
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>{t('Submit')}</Text>
           </TouchableOpacity>
         )}
         {signUpStep === 4 && (
           <TouchableOpacity
             style={styles.finish_buttonContainer}
             onPress={() => console.log('finish')}>
-            <Text style={styles.finish_buttonText}>Finish</Text>
+            <Text style={styles.finish_buttonText}>{t('Finish')}</Text>
           </TouchableOpacity>
         )}
       </View>

@@ -6,17 +6,18 @@ import {
 } from 'react-native';
 import React from 'react';
 import {COLORS, SIZES} from '../../constants';
+import {useTranslation} from 'react-i18next';
 export function SignupFooter({nextStep}) {
+  const {t} = useTranslation();
   return (
     <KeyboardAvoidingView behavior="position">
       <TouchableOpacity style={styles.buttonContainer} onPress={nextStep}>
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>{t('Next')}</Text>
       </TouchableOpacity>
       <Text style={styles.text}>
-        By signing up, you agree to our{' '}
-        <Text style={styles.highlightedText}>Terms of Service</Text> and
-        acknowledge that you have read our{' '}
-        <Text style={styles.highlightedText}>Privacy Policy</Text>.
+        {t('Sign')} <Text style={styles.highlightedText}>{t('Terms')}</Text>{' '}
+        {t('Acknowledge')}{' '}
+        <Text style={styles.highlightedText}>{t('Privacy')}</Text>.
       </Text>
     </KeyboardAvoidingView>
   );

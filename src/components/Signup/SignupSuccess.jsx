@@ -1,9 +1,11 @@
 import {StyleSheet, Text, useWindowDimensions, View} from 'react-native';
 import React from 'react';
 import {COLORS, SIZES} from '../../constants';
+import {useTranslation} from 'react-i18next';
 
 export default function SignupSuccess() {
   const {width} = useWindowDimensions();
+  const {t} = useTranslation();
   return (
     <View>
       <Text
@@ -14,7 +16,7 @@ export default function SignupSuccess() {
             fontSize: width > 380 ? SIZES.xLarge : SIZES.mLarge,
           },
         ]}>
-        Congratulations
+        {t('Congrats')}
       </Text>
       <Text
         style={[
@@ -24,7 +26,7 @@ export default function SignupSuccess() {
             fontSize: width > 380 ? SIZES.medium : SIZES.xSmall,
           },
         ]}>
-        You have successfully registered in NBE online banking service
+        {t('Congrats_sub')}
       </Text>
     </View>
   );

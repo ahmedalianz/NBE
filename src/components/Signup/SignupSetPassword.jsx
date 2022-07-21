@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {SIZES, COLORS, assets} from '../../constants';
 import {LoginInput} from '../Login';
 import PasswordVerificationText from './PasswordVerificationText';
+import {useTranslation} from 'react-i18next';
 export default function SignupSetPassword() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -39,16 +40,17 @@ export default function SignupSetPassword() {
       setMinValidation(true);
     }
   }, [password]);
+  const {t} = useTranslation();
   return (
     <View style={styles.phoneContainer}>
       <Text style={[styles.title, {color: COLORS.white}]}>
-        Set your password
+        {t('Password_title')}
       </Text>
-      <Text style={[styles.sub_title, {color: '#B7B7B7'}]}>
-        Enter a strong password for your online banking account
+      <Text style={[styles.sub_title, {color: COLORS.grey}]}>
+        {t('Password_subtitle')}
       </Text>
       <LoginInput
-        title="Password"
+        title={t('Password')}
         borderColor="#12A759"
         titleColor="#12A759"
         backgroundColor="#323F4B"
@@ -59,9 +61,9 @@ export default function SignupSetPassword() {
       />
       <View style={{marginTop: 20}}>
         <LoginInput
-          title="Confirm Password"
+          title={t('Confirm_Password')}
           borderColor="#323F4B"
-          titleColor="#B7B7B7"
+          titleColor="COLORS.grey"
           backgroundColor="#323F4B"
           image={assets.lock}
           input={confirmPassword}
@@ -71,23 +73,26 @@ export default function SignupSetPassword() {
       </View>
       <View style={styles.textLine}>
         <PasswordVerificationText
-          title="Lower case letter"
+          title={t('Lower_case')}
           invalid={lowerCaseValidation}
         />
         <PasswordVerificationText
-          title="Upper case letter"
+          title={t('Upper_case')}
           invalid={upperCaseValidation}
         />
       </View>
       <View style={styles.textLine}>
         <PasswordVerificationText
-          title="Minimum 8 characters"
+          title={t('Min_Char')}
           invalid={minValidation}
         />
-        <PasswordVerificationText title="Number" invalid={numberValidation} />
+        <PasswordVerificationText
+          title={t('Number')}
+          invalid={numberValidation}
+        />
       </View>
       <PasswordVerificationText
-        title="Special character"
+        title={t('Special_character')}
         invalid={specialValidation}
       />
     </View>
