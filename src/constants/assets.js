@@ -3,6 +3,9 @@ import ar from '../assets/images/ar.png';
 import logo from '../assets/images/logo.png';
 import logo_green from '../assets/images/logo_green.png';
 import back from '../assets/images/back.png';
+import balance_bg from '../assets/images/balance-bg.png';
+import dollar from '../assets/images/dollar.png';
+import profile from '../assets/images/profile.png';
 import eye_light from '../assets/images/eye_light.png';
 import eye from '../assets/images/eye.png';
 import lock from '../assets/images/lock.png';
@@ -20,8 +23,11 @@ export default {
   en,
   ar,
   logo,
+  dollar,
+  profile,
   back_success,
   logo_green,
+  balance_bg,
   back,
   lock,
   phone,

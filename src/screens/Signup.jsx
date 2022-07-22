@@ -19,9 +19,11 @@ import {LoginHeader} from '../components/Login';
 import SignupSetPassword from '../components/Signup/SignupSetPassword';
 import SignupSuccess from '../components/Signup/SignupSuccess';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
 
 export function Signup() {
   const [signUpStep, setSignUpStep] = useState(1);
+  const navigation = useNavigation();
   const {t} = useTranslation();
   const nextStep = () => {
     setSignUpStep(step => step + 1);
@@ -68,7 +70,7 @@ export function Signup() {
         {signUpStep === 4 && (
           <TouchableOpacity
             style={styles.finish_buttonContainer}
-            onPress={() => console.log('finish')}>
+            onPress={() => navigation.navigate('Home')}>
             <Text style={styles.finish_buttonText}>{t('Finish')}</Text>
           </TouchableOpacity>
         )}

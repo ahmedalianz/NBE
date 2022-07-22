@@ -68,7 +68,9 @@ export function LoginForm() {
         </Pressable>
       </View>
       <View style={styles.loginButtonContainer}>
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => navigation.navigate('Home')}>
           <Text style={[styles.loginButtonText, styles.whiteText]}>
             {t('LogIn')}
           </Text>
