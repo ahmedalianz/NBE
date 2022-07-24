@@ -6,6 +6,7 @@ import back from '../assets/images/back.png';
 import balance_bg from '../assets/images/balance-bg.png';
 import dollar from '../assets/images/dollar.png';
 import profile from '../assets/images/profile.png';
+import notifications from '../assets/images/notifications.png';
 import eye_light from '../assets/images/eye_light.png';
 import eye from '../assets/images/eye.png';
 import lock from '../assets/images/lock.png';
@@ -25,6 +26,7 @@ export default {
   logo,
   dollar,
   profile,
+  notifications,
   back_success,
   logo_green,
   balance_bg,

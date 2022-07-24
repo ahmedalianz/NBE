@@ -2,6 +2,7 @@ import {View, ScrollView} from 'react-native';
 import React from 'react';
 // import TopBar from '../components/TopBar'
 import Balance from '../components/Home/Balance.jsx';
+import TopBar from '../components/Home/TopBar.jsx';
 import Shortcuts from '../components/Home/Shortcuts.jsx';
 import QuickTransfer from '../components/Home/QuickTransfer.jsx';
 import History from '../components/Home/History.jsx';
@@ -11,7 +12,7 @@ import {SIZES} from '../constants';
 export const Home = () => {
   return (
     <View style={styles.homeScreen}>
-      {/* <TopBar /> */}
+      <TopBar />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Balance />
         <Shortcuts />
