@@ -17,13 +17,14 @@ import {LoginHeader} from '../components/Login';
 import SignupSetPassword from '../components/Signup/SignupSetPassword';
 import SignupSuccess from '../components/Signup/SignupSuccess';
 import {useTranslation} from 'react-i18next';
-import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {login} from '../store/AuthReducer';
+import {useDispatch} from 'react-redux';
 
 export function Signup() {
   const [signUpStep, setSignUpStep] = useState(1);
-  const navigation = useNavigation();
   const {t} = useTranslation();
+  const dispatch = useDispatch();
   const nextStep = () => {
     setSignUpStep(step => step + 1);
   };
@@ -69,7 +70,7 @@ export function Signup() {
         {signUpStep === 4 && (
           <TouchableOpacity
             style={styles.finish_buttonContainer}
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => dispatch(login())}>
             <Text style={styles.finish_buttonText}>{t('Finish')}</Text>
           </TouchableOpacity>
         )}

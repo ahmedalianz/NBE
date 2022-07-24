@@ -14,6 +14,8 @@ import {useNavigation} from '@react-navigation/native';
 import {LoginInput} from './LoginInput';
 import {useTranslation} from 'react-i18next';
 import {FingerPrintModal} from './FingerPrintModal';
+import {useDispatch} from 'react-redux';
+import {login} from '../../store/AuthReducer';
 export function LoginForm() {
   const {t} = useTranslation();
   const [password, setPassword] = useState('');
@@ -21,7 +23,7 @@ export function LoginForm() {
   const [modalVisibility, setModalVisibility] = useState(false);
   const navigation = useNavigation();
   const [rememberMe, setRememberMe] = useState(false);
-
+  const dispatch = useDispatch();
   return (
     <>
       <LoginInput
@@ -70,7 +72,7 @@ export function LoginForm() {
       <View style={styles.loginButtonContainer}>
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={() => navigation.navigate('Home')}>
+          onPress={() => dispatch(login())}>
           <Text style={[styles.loginButtonText, styles.whiteText]}>
             {t('LogIn')}
           </Text>

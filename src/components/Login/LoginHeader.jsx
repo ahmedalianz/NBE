@@ -4,6 +4,7 @@ import {assets, SIZES} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {changeLanguage} from '../../store/LanguageReducer';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 export function LoginHeader({
   screenName,
   prevStep,
@@ -27,11 +28,13 @@ export function LoginHeader({
       prevStep();
     }
   };
+  const insets = useSafeAreaInsets();
   return (
     <View
       style={[
         styles.header,
         {justifyContent: noNavigateBack ? 'flex-end' : 'space-between'},
+        {marginTop: insets.top},
         {flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'},
       ]}>
       {screenName === 'Login' ? (

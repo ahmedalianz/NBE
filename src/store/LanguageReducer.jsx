@@ -7,10 +7,10 @@ const {i18n} = useTranslation();
 const languageSlice = createSlice({
   name: 'language',
   initialState: {
-    language: 'en',
+    language: I18nManager.isRTL ? 'ar' : 'en',
   },
   reducers: {
-    changeLanguage(state, action) {
+    changeLanguage: (state, action) => {
       let language = action.payload;
       state.language = language;
       i18n
