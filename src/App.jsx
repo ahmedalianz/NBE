@@ -1,11 +1,14 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home, Login, Signup} from './screens';
+// import {createDrawerNavigator} from '@react-navigation/drawer';
+import {Home, Search, Login, Signup} from './screens';
 import './localization/i18next';
 import {StatusBar} from 'react-native';
-import LanguageContextProvider from './store/LanguageContext';
+import {Provider} from 'react-redux';
+import {store} from './store';
 const Stack = createNativeStackNavigator();
+// const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <>
@@ -16,15 +19,17 @@ export default function App() {
         translucent
         backgroundColor="transparent"
       />
-      <LanguageContextProvider>
+      <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Navigator screenOptions={{headerStyle: {}}}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
-            <Stack.Screen name="Home" component={Home} />
           </Stack.Navigator>
+          {/* <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={Home} />
+          </Drawer.Navigator> */}
         </NavigationContainer>
-      </LanguageContextProvider>
+      </Provider>
     </>
   );
 }

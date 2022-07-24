@@ -1,12 +1,4 @@
-import {
-  StyleSheet,
-  SafeAreaView,
-  Image,
-  ScrollView,
-  View,
-  Text,
-  I18nManager,
-} from 'react-native';
+import {StyleSheet, SafeAreaView, Image, ScrollView, View} from 'react-native';
 import React from 'react';
 import {assets, SIZES} from '../constants';
 import {

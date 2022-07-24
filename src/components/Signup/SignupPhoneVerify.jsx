@@ -1,23 +1,29 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {COLORS, SIZES} from '../../constants';
 import NumberInput from './NumberInput';
 import {useTranslation} from 'react-i18next';
+import {useFocusEffect} from '@react-navigation/native';
 export function SignupPhoneVerify() {
   const [phone, setPhone] = useState('');
   const {t} = useTranslation();
   const [interval, setIntervalTime] = useState(16);
-  useEffect(() => {
-    let countDown = 16;
-    const intervalTime = setInterval(() => {
-      if (countDown === 1) {
-        clearInterval(intervalTime);
-      }
-      countDown--;
-      setIntervalTime(val => val - 1);
-    }, 1000);
-    return () => clearInterval(intervalTime);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      let countDown = 16;
+      const intervalTime = setInterval(() => {
+        if (countDown === 1) {
+          clearInterval(intervalTime);
+        }
+        countDown--;
+        setIntervalTime(val => val - 1);
+      }, 1000);
+      return () => {
+        clearInterval(interval);
+      };
+    }, []),
+  );
+
   return (
     <View style={styles.phoneContainer}>
       <Text style={[styles.title, {color: COLORS.white}]}>
