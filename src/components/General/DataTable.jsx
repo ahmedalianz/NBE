@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-export function Transactions({data, keys}) {
+export function DataTable({data, columns}) {
   return (
     <View style={styles.tableContainer}>
       <View style={styles.tableRow}>
-        {keys.map(key => {
+        {columns.map(key => {
           return (
             <View style={styles.tableRowWrapper}>
               <Text style={styles.rowTextStyle}> {key} </Text>
@@ -17,7 +17,7 @@ export function Transactions({data, keys}) {
         {data.map(element => {
           return (
             <View style={styles.tableDataRowWrapper}>
-              {keys.map(key => {
+              {columns.map(key => {
                 return (
                   <View style={styles.tableDataRow}>
                     <Text style={styles.tableDataRowTextStyle}>

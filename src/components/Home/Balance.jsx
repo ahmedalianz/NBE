@@ -15,14 +15,7 @@ const Balance = () => {
         <ImageBackground
           style={styles.balanceImage}
           source={require('../../assets/images/balance-bg.png')}>
-          <Text
-            onPress={() => {
-              navigation.navigate('Transactions');
-            }}
-            style={styles.balance}>
-            {' '}
-            Tap to view v your balance{' '}
-          </Text>
+          <Text style={styles.balance}> Tap to view your balance </Text>
         </ImageBackground>
       </Pressable>
     </View>

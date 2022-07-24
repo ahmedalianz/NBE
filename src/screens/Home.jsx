@@ -8,7 +8,7 @@ import QuickTransfer from '../components/Home/QuickTransfer.jsx';
 import History from '../components/Home/History.jsx';
 import {StyleSheet, Text} from 'react-native';
 import {SIZES} from '../constants';
-import {Transactions} from './Transactions.jsx';
+import {DataTable} from '../components/General';
 
 const users = [
   {
@@ -17,7 +17,7 @@ const users = [
     username: 'Bret',
     Securities: 'Antonette',
     Cash: 'Antonette',
-    email: 'Sincere@april.biz',
+    Email: 'Sincere@april.biz',
     address: {
       street: 'Kulas Light',
       suite: 'Apt. 556',
@@ -42,7 +42,7 @@ const users = [
     username: 'Antonette',
     Securities: 'Antonette',
     Cash: 'Antonette',
-    email: 'Shanna@melissa.tv',
+    Email: 'Shanna@melissa.tv',
     address: {
       street: 'Victor Plains',
       suite: 'Suite 879',
@@ -67,7 +67,7 @@ const users = [
     username: 'Antonette',
     Securities: 'Antonette',
     Cash: 'Antonette',
-    email: 'Shanna@melissa.tv',
+    Email: 'Shanna@melissa.tv',
     address: {
       street: 'Victor Plains',
       suite: 'Suite 879',
@@ -95,7 +95,12 @@ export const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Balance />
         <Text style={styles.resuableText}> Reusable table </Text>
-        <Transactions keys={['Name', 'Securities', 'Cash']} data={users} />
+        <DataTable
+          columns={['Name', 'Securities', 'Cash', 'Email']}
+          data={users}
+        />
+        <View style={{marginTop: 10}} />
+        <DataTable columns={['phone', 'website']} data={users} />
         <Shortcuts />
         <QuickTransfer />
         <History />
