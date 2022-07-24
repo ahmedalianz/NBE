@@ -1,35 +1,52 @@
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground, Pressable} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../constants/theme';
-import {assets} from '../../constants';
+import {useNavigation} from '@react-navigation/native';
 
 const Balance = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.balanceContainer}>
-      <View style={styles.balanceWrapper}>
-        <ImageBackground style={styles.balanceImage} source={assets.balance_bg}>
-          <Text style={styles.balance}> Tap to view your balance </Text>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('Signup');
+        }}
+        style={styles.balanceWrapper}>
+        <ImageBackground
+          style={styles.balanceImage}
+          source={require('../../assets/images/balance-bg.png')}>
+          <Text
+            onPress={() => {
+              navigation.navigate('Transactions');
+            }}
+            style={styles.balance}>
+            {' '}
+            Tap to view v your balance{' '}
+          </Text>
         </ImageBackground>
-      </View>
+      </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  balanceContainer: {
+    paddingBottom: 25,
+  },
   balanceWrapper: {
-    backgroundColor: COLORS.black,
+    backgroundColor: 'black',
     borderRadius: 22,
-    marginTop: 54,
   },
   balanceImage: {
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     height: 132,
   },
   balance: {
-    color: COLORS.white,
-    fontSize: SIZES.mLarge,
+    color: 'white',
+    fontSize: 24,
   },
 });
 

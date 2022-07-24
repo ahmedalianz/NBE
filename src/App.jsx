@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home, Login, Signup} from './screens';
+import {Home, Login, Signup, Transactions} from './screens';
 import './localization/i18next';
 import {StatusBar, Text} from 'react-native';
 import LanguageContextProvider from './store/LanguageContext';
@@ -38,6 +38,7 @@ export default function App() {
           <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="Transactions" component={Transactions} />
             <Stack.Screen name="Home" component={HomeNavigator}></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
