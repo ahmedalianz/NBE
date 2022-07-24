@@ -7,11 +7,12 @@ import './localization/i18next';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 const Stack = createNativeStackNavigator();
 // const Drawer = createDrawerNavigator();
 export default function App() {
   return (
-    <>
+    <SafeAreaProvider>
       <StatusBar
         animated={true}
         showHideTransition="fade"
@@ -31,6 +32,6 @@ export default function App() {
           </Drawer.Navigator> */}
         </NavigationContainer>
       </Provider>
-    </>
+    </SafeAreaProvider>
   );
 }

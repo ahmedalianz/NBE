@@ -1,8 +1,6 @@
 import {
   View,
-  SafeAreaView,
   StyleSheet,
-  I18nManager,
   TouchableOpacity,
   Text,
   Image,
@@ -20,6 +18,7 @@ import SignupSetPassword from '../components/Signup/SignupSetPassword';
 import SignupSuccess from '../components/Signup/SignupSuccess';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export function Signup() {
   const [signUpStep, setSignUpStep] = useState(1);

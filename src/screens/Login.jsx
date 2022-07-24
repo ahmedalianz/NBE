@@ -1,4 +1,4 @@
-import {StyleSheet, SafeAreaView, Image, ScrollView, View} from 'react-native';
+import {StyleSheet, Image, ScrollView, View} from 'react-native';
 import React from 'react';
 import {assets, SIZES} from '../constants';
 import {
@@ -7,6 +7,7 @@ import {
   LoginHeader,
   LoginForm,
 } from '../components/Login';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export function Login() {
   return (

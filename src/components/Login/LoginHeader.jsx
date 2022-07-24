@@ -59,7 +59,6 @@ export function LoginHeader({
 }
 const styles = StyleSheet.create({
   header: {
-    marginTop: 54,
     alignItems: 'center',
     flexDirection: 'row',
   },
