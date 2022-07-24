@@ -1,22 +1,23 @@
 import {View, StyleSheet, Image, Pressable, I18nManager} from 'react-native';
-import React, {useContext} from 'react';
+import React from 'react';
 import {assets, SIZES} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
-import {LanguageContext} from '../../store/LanguageContext';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {changeLanguage} from '../../store/LanguageReducer';
 export function LoginHeader({
   screenName,
   prevStep,
   signUpStep,
   noNavigateBack,
 }) {
+  const dispatch = useDispatch();
+  const {language} = useSelector(state => state.language);
   const navigation = useNavigation();
-  const currentLanguageCtx = useContext(LanguageContext);
-  const changeLanguage = () => {
-    if (currentLanguageCtx.language === 'en') {
-      currentLanguageCtx.changeLanguage('ar');
+  const changeLanguageHandler = () => {
+    if (language === 'en') {
+      dispatch(changeLanguage('ar'));
     } else {
-      currentLanguageCtx.changeLanguage('en');
+      dispatch(changeLanguage('en'));
     }
   };
   const navigatePrevious = () => {
@@ -34,11 +35,9 @@ export function LoginHeader({
         {flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'},
       ]}>
       {screenName === 'Login' ? (
-        <Pressable onPress={changeLanguage}>
+        <Pressable onPress={changeLanguageHandler}>
           <Image
-            source={
-              currentLanguageCtx.language === 'en' ? assets.ar : assets.en
-            }
+            source={language === 'en' ? assets.ar : assets.en}
             resizeMode="cover"
             style={styles.lang}
           />

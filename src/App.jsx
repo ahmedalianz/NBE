@@ -1,28 +1,14 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home, Login, Signup} from './screens';
+// import {createDrawerNavigator} from '@react-navigation/drawer';
+import {Login, Home, Signup} from './screens';
 import './localization/i18next';
-import {StatusBar, Text} from 'react-native';
-import LanguageContextProvider from './store/LanguageContext';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-const Tab = createBottomTabNavigator();
+import {StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
+import {store} from './store';
 const Stack = createNativeStackNavigator();
-
-function Profile() {
-  return <Text>profile</Text>;
-}
-
-function HomeNavigator() {
-  return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
-      <Tab.Screen name="HomeScreen" component={Home} />
-      <Tab.Screen name="Profile" component={Profile} />
-    </Tab.Navigator>
-  );
-}
-
+// const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <>
@@ -33,15 +19,18 @@ export default function App() {
         translucent
         backgroundColor="transparent"
       />
-      <LanguageContextProvider>
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
-            <Stack.Screen name="Home" component={HomeNavigator}></Stack.Screen>
+            <Stack.Screen name="Home" component={Home}></Stack.Screen>
           </Stack.Navigator>
+          {/* <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={Home} />
+          </Drawer.Navigator> */}
         </NavigationContainer>
-      </LanguageContextProvider>
+      </Provider>
     </>
   );
 }
