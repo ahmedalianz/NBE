@@ -45,13 +45,3 @@ export default function App() {
     </>
   );
 }
-
-{
-  /* <NavigationContainer>
-      <Tab.Navigator
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Transfer" component={TransferScreen} />
-      </Tab.Navigator>
-    </NavigationContainer> */
-}
