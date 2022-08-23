@@ -1,8 +1,7 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../constants';
 
-const History = () => {
+export const History = () => {
   return (
     <View style={styles.historyWrapper}>
       <View style={styles.historyTitleWrapper}>
@@ -92,20 +91,16 @@ const History = () => {
 
 const styles = StyleSheet.create({
   historyTitle: {
-    color: COLORS.white,
     fontWeight: 'bold',
     fontSize: 20,
   },
   historyTitleWrapper: {
     marginTop: 20,
   },
-  historyItemTitle: {
-    color: COLORS.white,
-  },
+  historyItemTitle: {},
   listItemWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: COLORS.white,
     borderBottomWidth: 1,
     paddingVertical: 10,
   },
@@ -113,7 +108,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   price: {
-    color: COLORS.white,
     fontWeight: 'bold',
   },
   historyItemWrapper: {
@@ -121,5 +115,3 @@ const styles = StyleSheet.create({
     width: '70%',
   },
 });
-
-export default History;

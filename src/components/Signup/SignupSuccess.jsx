@@ -1,40 +1,13 @@
-import {StyleSheet, Text, useWindowDimensions, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../constants';
 import {useTranslation} from 'react-i18next';
-
-export default function SignupSuccess() {
-  const {width} = useWindowDimensions();
+import styles from './Signup.styles';
+export function SignupSuccess() {
   const {t} = useTranslation();
   return (
     <View>
-      <Text
-        style={[
-          styles.title,
-          {
-            color: COLORS.white,
-            fontSize: width > 380 ? SIZES.xLarge : SIZES.mLarge,
-          },
-        ]}>
-        {t('Congrats')}
-      </Text>
-      <Text
-        style={[
-          styles.sub_title,
-          {
-            color: COLORS.white,
-            fontSize: width > 380 ? SIZES.medium : SIZES.xSmall,
-          },
-        ]}>
-        {t('Congrats_sub')}
-      </Text>
+      <Text style={styles.bigTitle}>{t('Congrats')}</Text>
+      <Text style={styles.sub_title}>{t('Congrats_sub')}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {fontWeight: 'bold', marginBottom: 5},
-  sub_title: {
-    marginBottom: 20,
-  },
-});

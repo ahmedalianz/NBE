@@ -2,7 +2,7 @@ import en from '../assets/images/en.png';
 import ar from '../assets/images/ar.png';
 import logo from '../assets/images/logo.png';
 import logo_green from '../assets/images/logo_green.png';
-import back from '../assets/images/back.png';
+import signupbBackground from '../assets/images/back.png';
 import balance_bg from '../assets/images/balance-bg.png';
 import dollar from '../assets/images/dollar.png';
 import profile from '../assets/images/profile.png';
@@ -30,7 +30,7 @@ export default {
   back_success,
   logo_green,
   balance_bg,
-  back,
+  signupbBackground,
   lock,
   phone,
   lock_light,

@@ -4,7 +4,7 @@ import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import AppNavigation from './AppNavigation';
+import Navigations from './navigations';
 export default function App() {
   return (
     <Provider store={store}>
@@ -16,7 +16,7 @@ export default function App() {
           translucent
           backgroundColor="transparent"
         />
-        <AppNavigation />
+        <Navigations />
       </SafeAreaProvider>
     </Provider>
   );

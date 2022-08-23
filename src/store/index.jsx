@@ -1,8 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
-import language from './LanguageReducer';
 import auth from './AuthReducer';
 const store = configureStore({
-  reducer: {language, auth},
+  reducer: {auth},
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({serializableCkeck: false}),
 });

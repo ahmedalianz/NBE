@@ -1,8 +1,8 @@
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import React from 'react';
-import {assets, COLORS, SIZES} from '../../constants';
+import {assets} from '../../constants';
 
-const QuickTransfer = () => {
+export const QuickTransfer = () => {
   return (
     <View style={styles.quickTransfer}>
       <Text style={styles.quickTransferText}>Send money</Text>
@@ -26,11 +26,8 @@ const QuickTransfer = () => {
 };
 
 const styles = StyleSheet.create({
-  quickTransfer: {
-    marginTop: SIZES.mLarge,
-  },
+  quickTransfer: {},
   quickTransferText: {
-    color: COLORS.white,
     fontWeight: 'bold',
     fontSize: 20,
   },
@@ -38,22 +35,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   cardView: {
-    marginRight: SIZES.xSmall,
-    backgroundColor: COLORS.white,
     justifyContent: 'center',
     alignItems: 'center',
     width: 77,
     height: 86,
-    borderRadius: SIZES.large,
   },
-  profile: {
-    backgroundColor: COLORS.white,
-  },
-  cardName: {
-    color: COLORS.black,
-  },
+  profile: {},
+  cardName: {},
   historyTitle: {
-    color: COLORS.white,
     fontWeight: 'bold',
     fontSize: 20,
   },

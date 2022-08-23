@@ -1,15 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../constants';
+import {Colors, Scaling} from '../../constants';
 
-export default function PasswordVerificationText({title, invalid}) {
+export function PasswordVerificationText({title, invalid}) {
   return (
     <View style={styles.container}>
       <View
         style={[
           styles.circle,
           {
-            backgroundColor: invalid ? COLORS.grey : COLORS.primary,
+            backgroundColor: invalid ? Colors.grey : Colors.primary2,
           },
         ]}></View>
       <Text style={styles.textVerification}>{title}</Text>
@@ -22,16 +22,15 @@ const styles = StyleSheet.create({
     width: '50%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 3,
+    marginVertical: Scaling.verticalScale(12),
   },
   circle: {
-    borderRadius: 50,
-    width: 18,
-    marginEnd: 5,
-    height: 18,
+    borderRadius: 30,
+    width: Scaling.scale(12),
+    marginEnd: Scaling.scale(10),
+    height: Scaling.verticalScale(12),
   },
   textVerification: {
-    color: COLORS.white,
-    fontSize: SIZES.medium,
+    color: Colors.white,
   },
 });

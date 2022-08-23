@@ -6,61 +6,61 @@ import {
   StyleSheet,
   Image,
   Pressable,
-  TouchableNativeFeedback,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
-import {assets, COLORS, SIZES} from '../../constants';
-export function LoginInput({
-  borderColor,
-  backgroundColor,
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {assets, Colors, Layouts, Scaling, Typography} from '../../constants';
+export function Input({
+  style,
   title,
   titleColor,
-  name,
+  type,
   image,
-  marginTop,
   input,
   setInput,
   keyboardType = 'default',
 }) {
   const moveText = useRef(new Animated.Value(0)).current;
   const textRef = useRef(null);
-  const [secureText, setSecureText] = useState(name === 'Password');
-  const changeSecureTextEntry = () => {
+  const [secureText, setSecureText] = useState(type === 'password');
+  const changeSecureTextEntry = useCallback(() => {
     setSecureText(val => !val);
-  };
-  useEffect(() => {
+  }, []);
+  const animateText = useCallback(() => {
     if (input !== '') {
       moveTextTop();
     } else if (input === '') {
       moveTextBottom();
     }
   }, [input]);
+  useEffect(() => {
+    animateText();
+  }, [input]);
 
-  const moveTextTop = () => {
+  const moveTextTop = useCallback(() => {
     Animated.timing(moveText, {
       toValue: 1,
       duration: 200,
       useNativeDriver: true,
     }).start();
-  };
+  }, []);
 
-  const moveTextBottom = () => {
+  const moveTextBottom = useCallback(() => {
     Animated.timing(moveText, {
       toValue: 0,
       duration: 200,
       useNativeDriver: true,
     }).start();
-  };
+  }, []);
   const yVal = moveText.interpolate({
     inputRange: [0, 1],
     outputRange: [4, -12],
   });
-  const inputFocus = () => {
+  const inputFocus = useCallback(() => {
     textRef.current.focus();
-  };
-  const inputBlur = () => {
+  }, []);
+  const inputBlur = useCallback(() => {
     textRef.current.blur();
-  };
+  }, []);
   const animStyle = {
     transform: [
       {
@@ -70,29 +70,14 @@ export function LoginInput({
   };
 
   return (
-    <TouchableNativeFeedback onPress={inputBlur}>
-      <View
-        style={[
-          styles.inputContainer,
-          {borderColor, backgroundColor, marginTop},
-        ]}>
-        <Animated.View style={[styles.animatedStyle, animStyle]}>
-          <Text
-            onPress={inputFocus}
-            style={{
-              color: titleColor,
-              fontWeight: '700',
-              fontSize: SIZES.small,
-              lineHeight: SIZES.medium,
-            }}>
-            {title}
-          </Text>
-        </Animated.View>
-        <Image
-          source={image}
-          style={[styles.inputIcon, {left: 22}]}
-          resizeMode="contain"
-        />
+    <Pressable onPress={inputBlur} style={[styles.inputContainer, style]}>
+      <Animated.View style={[styles.animatedStyle, animStyle]}>
+        <Text onPress={inputFocus} style={[styles.label, {color: titleColor}]}>
+          {title}
+        </Text>
+      </Animated.View>
+      <View style={[Layouts.rowBetween, Layouts.yCentered, {height: '100%'}]}>
+        <Image source={image} style={styles.inputIcon} resizeMode="contain" />
         <TextInput
           ref={textRef}
           autoCapitalize={'none'}
@@ -104,10 +89,11 @@ export function LoginInput({
           secureTextEntry={secureText}
           style={[
             styles.inputText,
-            {color: name === 'Username' ? COLORS.white : COLORS.black},
+            {color: type === 'password' ? Colors.primary : Colors.white},
+            {width: type === 'password' ? '70%' : '100%'},
           ]}
         />
-        {name === 'Password' && (
+        {type === 'password' && (
           <Pressable
             style={[styles.inputIcon, {right: 22}]}
             onPress={changeSecureTextEntry}>
@@ -119,7 +105,7 @@ export function LoginInput({
           </Pressable>
         )}
       </View>
-    </TouchableNativeFeedback>
+    </Pressable>
   );
 }
 const styles = StyleSheet.create({
@@ -128,8 +114,6 @@ const styles = StyleSheet.create({
     left: 65,
     position: 'absolute',
     borderRadius: 90,
-    fontSize: SIZES.small,
-    lineHeight: SIZES.medium,
     zIndex: 2,
   },
   inputContainer: {
@@ -137,13 +121,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 65,
   },
-  whiteText: {
-    color: COLORS.white,
-  },
-  inputIcon: {width: 20, height: 22, position: 'absolute', top: 20},
+  label: {...Typography.FONT_SIZE_14, ...Typography.FONT_BOLD.en},
+  inputIcon: {width: 20, height: 22, marginLeft: Scaling.scale(20)},
   inputText: {
-    marginLeft: 65,
-    position: 'relative',
-    top: 10,
+    marginLeft: Scaling.scale(20),
+    ...Typography.FONT_SIZE_16,
+    ...Typography.FONT_REGULAR.en,
   },
 });

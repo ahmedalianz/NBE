@@ -1,26 +1,13 @@
-import {Text, StyleSheet, useWindowDimensions} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../constants';
 import {useTranslation} from 'react-i18next';
+import styles from './Login.styles';
 
 export function Welcome() {
   const {t} = useTranslation();
-  const {width} = useWindowDimensions();
   return (
-    <Text
-      style={[
-        styles.text,
-        {fontSize: width > 380 ? SIZES.xxLarge : SIZES.mLarge},
-      ]}>
-      {t('Welcome_To_NBE')}
-    </Text>
+    <View style={styles.px25}>
+      <Text style={styles.title}>{t('Welcome_To_NBE')}</Text>
+    </View>
   );
 }
-const styles = StyleSheet.create({
-  text: {
-    marginTop: 100,
-    color: COLORS.white,
-    fontWeight: '700',
-    lineHeight: 47,
-  },
-});

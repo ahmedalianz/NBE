@@ -1,8 +1,8 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import {assets, SIZES} from '../../constants';
+import {assets} from '../../constants';
 
-const Shortcuts = () => {
+export const Shortcuts = () => {
   const shortcuts = ['Accounts', 'Cards', 'Utilities', 'History'];
   return (
     <View style={styles.shortcutsContainer}>
@@ -20,7 +20,6 @@ const Shortcuts = () => {
 
 const styles = StyleSheet.create({
   shortcutsContainer: {
-    marginTop: SIZES.mLarge,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -40,5 +39,3 @@ const styles = StyleSheet.create({
   },
   dollar_image: {width: 28, height: 20},
 });
-
-export default Shortcuts;

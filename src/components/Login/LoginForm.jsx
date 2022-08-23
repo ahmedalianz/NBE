@@ -1,142 +1,73 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Pressable,
-  StyleSheet,
-  I18nManager,
-} from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import {View, Text, TouchableOpacity, Image, Pressable} from 'react-native';
 import React, {useState} from 'react';
-import {assets, COLORS, SIZES} from '../../constants';
+import {assets, Colors} from '../../constants';
+import styles from './Login.styles';
 import {useNavigation} from '@react-navigation/native';
-import {LoginInput} from './LoginInput';
+import {Input} from '..';
+import LoginOptions from './loginOptions';
 import {useTranslation} from 'react-i18next';
-import {FingerPrintModal} from './FingerPrintModal';
 import {useDispatch} from 'react-redux';
 import {login} from '../../store/AuthReducer';
-export function LoginForm() {
+
+export function LoginForm({openDrawer}) {
   const {t} = useTranslation();
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [modalVisibility, setModalVisibility] = useState(false);
-  const navigation = useNavigation();
-  const [rememberMe, setRememberMe] = useState(false);
-  const dispatch = useDispatch();
+
   return (
-    <>
-      <LoginInput
-        name="Username"
+    <View style={styles.px25}>
+      <Input
         title={t('Username')}
-        borderColor="#FFFFFF80"
-        titleColor={COLORS.white}
-        backgroundColor="#0000004D"
+        style={{
+          borderColor: '#FFFFFF80',
+          backgroundColor: '#0000004D',
+          marginTop: 39,
+        }}
         image={assets.at}
-        marginTop={39}
         input={name}
         setInput={setName}
+        titleColor={Colors.white}
       />
-      <LoginInput
-        name="Password"
+      <Input
+        type="password"
         title={t('Password')}
-        borderColor={I18nManager.isRTL ? '#FFFFFF80' : '#007236'}
-        backgroundColor={I18nManager.isRTL ? '#0000004D' : '#FFFFFF'}
-        titleColor={I18nManager.isRTL ? COLORS.white : COLORS.primary}
-        image={I18nManager.isRTL ? assets.lock_light : assets.lock}
-        marginTop={21}
+        style={{
+          borderColor: '#007236',
+          backgroundColor: '#FFFFFF',
+          marginTop: 21,
+        }}
+        image={assets.lock}
         input={password}
         setInput={setPassword}
+        titleColor={Colors.primary}
       />
-
-      <View style={styles.loginOptions}>
-        <View style={styles.rememberMe}>
-          <CheckBox
-            value={rememberMe}
-            onValueChange={newValue => setRememberMe(newValue)}
-            tintColors={{
-              true: COLORS.white,
-              false: COLORS.grey,
-            }}
-          />
-          <Text
-            onPress={() => setRememberMe(val => !val)}
-            style={styles.whiteText}>
-            {t('RememberMe')}
-          </Text>
-        </View>
-        <Pressable>
-          <Text style={styles.whiteText}>{t('ForgotPassword')}</Text>
-        </Pressable>
-      </View>
+      <LoginOptions />
       <View style={styles.loginButtonContainer}>
         <TouchableOpacity
           style={styles.loginButton}
           onPress={() => dispatch(login())}>
-          <Text style={[styles.loginButtonText, styles.whiteText]}>
-            {t('LogIn')}
-          </Text>
+          <Text style={styles.loginButtonText}>{t('LogIn')}</Text>
         </TouchableOpacity>
-        <Pressable onPress={() => setModalVisibility(val => !val)}>
-          <Image source={assets.fingerprint} style={{width: 50, height: 50}} />
+        <Pressable onPress={openDrawer}>
+          <Image
+            source={assets.fingerprint}
+            style={styles.icon}
+            resizeMode="contain"
+          />
         </Pressable>
       </View>
       <View style={styles.signupLinkContainer}>
-        <Text style={styles.whiteText}>
+        <Text style={styles.noAccount}>
           {t('No_Account')}{' '}
           <Text
-            onPress={() => navigation.navigate('Signup')}
-            style={styles.link}>
+            onPress={() => navigation.navigate('Signup1')}
+            style={[styles.link, {textDecorationLine: 'underline'}]}>
             {t('Sign_up')}
           </Text>
         </Text>
       </View>
-      <FingerPrintModal {...{modalVisibility, setModalVisibility}} />
-    </>
+    </View>
   );
 }
-const styles = StyleSheet.create({
-  loginButtonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  password: {
-    marginTop: 21,
-    borderWidth: 1.5,
-    borderRadius: 10,
-    height: 60,
-  },
-  loginButton: {
-    flex: 1,
-    marginRight: 21,
-    backgroundColor: COLORS.primary,
-    padding: SIZES.large,
-    borderRadius: SIZES.xSmall,
-  },
-  loginButtonText: {
-    color: COLORS.white,
-    textAlign: 'center',
-    lineHeight: SIZES.large,
-    fontSize: SIZES.medium,
-  },
-  whiteText: {
-    color: COLORS.white,
-  },
-  link: {color: COLORS.link, textDecorationLine: 'underline'},
-  loginOptions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  signupLinkContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: SIZES.xLarge,
-  },
-  rememberMe: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-});

@@ -1,73 +1,46 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useState} from 'react';
-import {COLORS, SIZES} from '../../constants';
-import NumberInput from './NumberInput';
+import {Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+// import NumberInput from './NumberInput';
 import {useTranslation} from 'react-i18next';
-import {useFocusEffect} from '@react-navigation/native';
-export function SignupPhoneVerify() {
-  const [phone, setPhone] = useState('');
-  const {t} = useTranslation();
-  const [interval, setIntervalTime] = useState(16);
-  useFocusEffect(
-    useCallback(() => {
-      let countDown = 16;
-      const intervalTime = setInterval(() => {
-        if (countDown === 1) {
-          clearInterval(intervalTime);
-        }
-        countDown--;
-        setIntervalTime(val => val - 1);
-      }, 1000);
-      return () => {
-        clearInterval(interval);
-      };
-    }, []),
-  );
+import styles from './Signup.styles';
+import OTP from './OTP';
 
+export function SignupPhoneVerify({phone, value, setValue}) {
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(59);
+  const {t} = useTranslation();
+  useEffect(() => {
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(myInterval);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+    }, 1000);
+    return () => {
+      clearInterval(myInterval);
+    };
+  });
   return (
     <View style={styles.phoneContainer}>
-      <Text style={[styles.title, {color: COLORS.white}]}>
-        {t('Verification')}
+      <Text style={styles.title}>{t('Verification')}</Text>
+      <Text style={styles.sub_title}>
+        {t('Verification_message')} +2{phone}
       </Text>
-      <Text style={[styles.sub_title, {color: COLORS.grey}]}>
-        {t('Verification_message')} +20 101 131 5412
-      </Text>
-      <View style={styles.numbersContainer}>
-        <NumberInput />
-        <NumberInput />
-        <NumberInput />
-        <NumberInput />
-        <NumberInput />
-      </View>
+      <OTP {...{value, setValue}} />
       <View>
         <Text style={styles.noRecive}>{t('Verification_No_Receive')}</Text>
         <Text style={styles.countDown}>
-          {t('Request_new')} 00:{interval}
+          {t('Request_new')} {`0${minutes}`}:
+          {seconds < 10 ? `0${seconds}` : seconds}
         </Text>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  phoneContainer: {marginTop: SIZES.xLarge},
-  title: {fontWeight: 'bold', fontSize: 20, marginBottom: 5},
-  sub_title: {
-    fontSize: SIZES.medium,
-    marginBottom: 20,
-  },
-  noRecive: {
-    color: COLORS.grey,
-    fontSize: SIZES.medium,
-  },
-  numbersContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
-  },
-  countDown: {
-    color: COLORS.white,
-    fontWeight: 'bold',
-    lineHeight: SIZES.large,
-  },
-});

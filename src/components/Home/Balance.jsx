@@ -1,9 +1,8 @@
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../constants/theme';
 import {assets} from '../../constants';
 
-const Balance = () => {
+export const Balance = () => {
   return (
     <View style={styles.balanceContainer}>
       <View style={styles.balanceWrapper}>
@@ -17,7 +16,6 @@ const Balance = () => {
 
 const styles = StyleSheet.create({
   balanceWrapper: {
-    backgroundColor: COLORS.black,
     borderRadius: 22,
     marginTop: 54,
   },
@@ -27,10 +25,5 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 132,
   },
-  balance: {
-    color: COLORS.white,
-    fontSize: SIZES.mLarge,
-  },
+  balance: {},
 });
-
-export default Balance;

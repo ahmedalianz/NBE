@@ -1,23 +1,23 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
-import {assets, COLORS, SIZES} from '../../constants';
-import {LoginInput} from '../Login';
+import {Text, View} from 'react-native';
+import React from 'react';
+import {assets, Colors} from '../../constants';
+import {Input} from '..';
 import {useTranslation} from 'react-i18next';
-export function SignupPhone() {
-  const [phone, setPhone] = useState('');
+import styles from './Signup.styles';
+export function SignupPhone({phone, setPhone}) {
   const {t} = useTranslation();
   return (
     <View style={styles.phoneContainer}>
-      <Text style={[styles.title, {color: COLORS.white}]}>{t('Mobile')}</Text>
-      <Text style={[styles.sub_title, {color: COLORS.grey}]}>
-        {t('Enter_Phone')}
-      </Text>
-      <LoginInput
+      <Text style={styles.title}>{t('Mobile')}</Text>
+      <Text style={styles.sub_title}>{t('Enter_Phone')}</Text>
+      <Input
         title={t('Mobile')}
-        borderColor="#12A759"
-        titleColor="#12A759"
+        titleColor={Colors.primary2}
         keyboardType="phone-pad"
-        backgroundColor="#323F4B"
+        style={{
+          backgroundColor: Colors.mid_green,
+          borderColor: Colors.primary2,
+        }}
         image={assets.phone}
         input={phone}
         setInput={setPhone}
@@ -25,12 +25,3 @@ export function SignupPhone() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  phoneContainer: {marginTop: SIZES.xLarge},
-  title: {fontWeight: 'bold', fontSize: 20, marginBottom: 5},
-  sub_title: {
-    fontSize: SIZES.medium,
-    marginBottom: 20,
-  },
-});
