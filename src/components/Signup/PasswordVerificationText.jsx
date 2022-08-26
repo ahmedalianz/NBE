@@ -1,13 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
-import {Colors, Scaling} from '../../constants';
-
+import {Colors} from '../../constants';
+import styles from './Signup.styles';
 export function PasswordVerificationText({title, invalid}) {
   return (
-    <View style={styles.container}>
+    <View style={styles.PasswordVerificationcontainer}>
       <View
         style={[
-          styles.circle,
+          styles.PasswordVerificationcontainerCircle,
           {
             backgroundColor: invalid ? Colors.grey : Colors.primary2,
           },
@@ -16,21 +16,3 @@ export function PasswordVerificationText({title, invalid}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '50%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: Scaling.verticalScale(12),
-  },
-  circle: {
-    borderRadius: 30,
-    width: Scaling.scale(12),
-    marginEnd: Scaling.scale(10),
-    height: Scaling.verticalScale(12),
-  },
-  textVerification: {
-    color: Colors.white,
-  },
-});

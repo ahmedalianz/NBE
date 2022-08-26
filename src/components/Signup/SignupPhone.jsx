@@ -1,7 +1,7 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 import {assets, Colors} from '../../constants';
-import {Input} from '..';
+import {Input} from '../common';
 import {useTranslation} from 'react-i18next';
 import styles from './Signup.styles';
 export function SignupPhone({phone, setPhone}) {

@@ -1,15 +1,8 @@
-import {
-  View,
-  Text,
-  TextInput,
-  Animated,
-  StyleSheet,
-  Image,
-  Pressable,
-} from 'react-native';
+import {View, Text, TextInput, Animated, Image, Pressable} from 'react-native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {assets, Colors, Layouts, Scaling, Typography} from '../../constants';
-export function Input({
+import {assets, Colors, Layouts} from '../../../constants';
+import styles from './input.styles';
+export default function Input({
   style,
   title,
   titleColor,
@@ -108,24 +101,3 @@ export function Input({
     </Pressable>
   );
 }
-const styles = StyleSheet.create({
-  animatedStyle: {
-    top: 15,
-    left: 65,
-    position: 'absolute',
-    borderRadius: 90,
-    zIndex: 2,
-  },
-  inputContainer: {
-    borderWidth: 1.5,
-    borderRadius: 10,
-    height: 65,
-  },
-  label: {...Typography.FONT_SIZE_14, ...Typography.FONT_BOLD.en},
-  inputIcon: {width: 20, height: 22, marginLeft: Scaling.scale(20)},
-  inputText: {
-    marginLeft: Scaling.scale(20),
-    ...Typography.FONT_SIZE_16,
-    ...Typography.FONT_REGULAR.en,
-  },
-});

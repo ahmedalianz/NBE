@@ -3,19 +3,22 @@ import React, {useState} from 'react';
 import {assets, Colors} from '../../constants';
 import styles from './Login.styles';
 import {useNavigation} from '@react-navigation/native';
-import {Input} from '..';
+import {Input} from '../common';
 import LoginOptions from './loginOptions';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
 import {login} from '../../store/AuthReducer';
+import {SheetManager} from 'react-native-actions-sheet';
 
-export function LoginForm({openDrawer}) {
+export function LoginForm() {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-
+  const openSheet = () => {
+    SheetManager.show('fingerprint');
+  };
   return (
     <View style={styles.px25}>
       <Input
@@ -50,7 +53,7 @@ export function LoginForm({openDrawer}) {
           onPress={() => dispatch(login())}>
           <Text style={styles.loginButtonText}>{t('LogIn')}</Text>
         </TouchableOpacity>
-        <Pressable onPress={openDrawer}>
+        <Pressable onPress={openSheet}>
           <Image
             source={assets.fingerprint}
             style={styles.icon}

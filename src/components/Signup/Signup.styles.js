@@ -17,14 +17,15 @@ export default StyleSheet.create({
   ],
   sub_title: [
     Typography.FONT_SIZE_15,
+    Typography.FONT_REGULAR,
     {color: Colors.grey},
     {marginBottom: Scaling.verticalScale(20)},
   ],
-  noRecive: {
-    ...Typography.FONT_SIZE_16,
-    color: Colors.grey,
-    marginTop: Scaling.verticalScale(20),
-  },
+  noRecive: [
+    Typography.FONT_SIZE_16,
+    Typography.FONT_REGULAR,
+    {color: Colors.grey, marginTop: Scaling.verticalScale(20)},
+  ],
   countDown: [
     {color: Colors.white},
     Typography.FONT_BOLD,
@@ -46,4 +47,17 @@ export default StyleSheet.create({
   focusCell: {
     borderColor: Colors.primary2,
   },
+  PasswordVerificationcontainer: {
+    width: '50%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: Scaling.verticalScale(12),
+  },
+  PasswordVerificationcontainerCircle: {
+    borderRadius: 30,
+    width: Scaling.scale(12),
+    marginEnd: Scaling.scale(10),
+    height: Scaling.verticalScale(12),
+  },
+  textVerification: [{color: Colors.white}, Typography.FONT_REGULAR],
 });

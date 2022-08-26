@@ -37,7 +37,7 @@ export function Signup3({navigation}) {
     } else {
       setMinValidation(true);
     }
-    if (password === confirmPassword) {
+    if (password !== '' && password === confirmPassword) {
       setPasswordMisMatch(false);
     } else {
       setPasswordMisMatch(true);
@@ -66,6 +66,7 @@ export function Signup3({navigation}) {
         upperCaseValidation,
         specialValidation,
         minValidation,
+        passwrodMisMatch,
       }}
     />
   );

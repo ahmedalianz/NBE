@@ -3,11 +3,11 @@ import React from 'react';
 import {
   SignupFooter,
   SignupPhone,
-  AppBar,
   SignupPhoneVerify,
   SignupSetPassword,
   SignupSuccess,
 } from '../../components';
+import {AppBar} from '../../components/common';
 import {assets, Colors, Layouts, Scaling} from '../../constants';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
@@ -31,6 +31,7 @@ export function SignupSwitcher({
   upperCaseValidation,
   specialValidation,
   minValidation,
+  passwrodMisMatch,
   passwordAccepted,
 }) {
   const navigation = useNavigation();
@@ -79,6 +80,7 @@ export function SignupSwitcher({
               upperCaseValidation,
               specialValidation,
               minValidation,
+              passwrodMisMatch,
             }}
           />
         )}

@@ -1,7 +1,8 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 import {Colors, assets, Layouts} from '../../constants';
-import {Input, PasswordVerificationText} from '..';
+import {PasswordVerificationText} from '..';
+import {Input} from '../common';
 import {useTranslation} from 'react-i18next';
 import styles from './Signup.styles';
 export function SignupSetPassword({
@@ -14,6 +15,7 @@ export function SignupSetPassword({
   upperCaseValidation,
   specialValidation,
   minValidation,
+  passwrodMisMatch,
 }) {
   const {t} = useTranslation();
   return (
@@ -62,10 +64,16 @@ export function SignupSetPassword({
           invalid={numberValidation}
         />
       </View>
-      <PasswordVerificationText
-        title={t('Special_character')}
-        invalid={specialValidation}
-      />
+      <View style={Layouts.rowBetweenR}>
+        <PasswordVerificationText
+          title={t('Special_character')}
+          invalid={specialValidation}
+        />
+        <PasswordVerificationText
+          title={t('password_match')}
+          invalid={passwrodMisMatch}
+        />
+      </View>
     </View>
   );
 }

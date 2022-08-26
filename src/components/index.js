@@ -1,10 +1,7 @@
-export {default as AppBar} from './common/AppBar/AppBar';
-export {Input} from './common/Input';
 // export {Balance} from './Home/Balance';
 // export {History} from './Home/History';
 // export {QuickTransfer} from './Home/QuickTransfer';
 // export {Shortcuts} from './Home/Shortcuts';
-export {FingerPrint} from './Login/FingerPrint';
 export {LoginForm} from './Login/LoginForm';
 export {LoginFooter} from './Login/LoginFooter';
 export {Welcome} from './Login/Welcome';

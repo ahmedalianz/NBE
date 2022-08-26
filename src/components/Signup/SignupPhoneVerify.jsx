@@ -1,6 +1,5 @@
 import {Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-// import NumberInput from './NumberInput';
 import {useTranslation} from 'react-i18next';
 import styles from './Signup.styles';
 import OTP from './OTP';

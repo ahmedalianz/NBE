@@ -1,3 +1,4 @@
+import {I18nManager} from 'react-native';
 import {scaleFont} from './scaling';
 
 // FONT FAMILY
@@ -5,8 +6,8 @@ export const FONT_FAMILY_REGULAR = 'Roboto-Regular';
 export const FONT_FAMILY_MEDIUM = 'Roboto-Medium';
 export const FONT_FAMILY_BOLD = 'Roboto-Bold';
 export const FONT_FAMILY_AR_REGULAR = 'TheMixArab-Regular';
+export const FONT_FAMILY_AR_MEDIUM = 'TheMixArab-Black';
 export const FONT_FAMILY_AR_BOLD = 'TheMixArab-Bold';
-export const FONT_FAMILY_AR_BOLD2 = 'TheMixArab-Bold2';
 
 // FONT SIZE
 const FONT_SIZE_10 = {fontSize: scaleFont(10)};
@@ -27,19 +28,15 @@ const LINE_HEIGHT_18 = {lineHeight: scaleFont(18)};
 const LINE_HEIGHT_20 = {lineHeight: scaleFont(20)};
 const LINE_HEIGHT_24 = {lineHeight: scaleFont(24)};
 const LINE_HEIGHT_46 = {lineHeight: scaleFont(46)};
-
 // FONT STYLE
 const FONT_REGULAR = {
-  ar: {fontFamily: FONT_FAMILY_AR_REGULAR},
-  en: {fontFamily: FONT_FAMILY_REGULAR},
+  fontFamily: I18nManager.isRTL ? FONT_FAMILY_AR_REGULAR : FONT_FAMILY_REGULAR,
 };
 const FONT_MEDIUM = {
-  ar: {fontFamily: FONT_FAMILY_AR_BOLD2},
-  en: {fontFamily: FONT_FAMILY_MEDIUM},
+  fontFamily: I18nManager.isRTL ? FONT_FAMILY_AR_MEDIUM : FONT_FAMILY_MEDIUM,
 };
 const FONT_BOLD = {
-  ar: {fontFamily: FONT_FAMILY_AR_BOLD},
-  en: {fontFamily: FONT_FAMILY_BOLD},
+  fontFamily: I18nManager.isRTL ? FONT_FAMILY_AR_BOLD : FONT_FAMILY_BOLD,
 };
 
 export default {

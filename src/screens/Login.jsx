@@ -5,30 +5,16 @@ import {
   ScrollView,
   StatusBar,
 } from 'react-native';
-import React, {useRef, useCallback} from 'react';
+import React from 'react';
 import {assets} from '../constants';
-import {
-  LoginFooter,
-  Welcome,
-  AppBar,
-  LoginForm,
-  FingerPrint,
-} from '../components';
+import {LoginFooter, Welcome, LoginForm} from '../components';
+import {AppBar} from '../components/common';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Modalize} from 'react-native-modalize';
 import RNRestart from 'react-native-restart';
 import {useTranslation} from 'react-i18next';
 
 export function Login() {
-  const modalizeRef = useRef(null);
-  const [i18n] = useTranslation();
-
-  const openDrawer = useCallback(() => {
-    modalizeRef.current?.open();
-  }, []);
-  const closeDrawer = useCallback(() => {
-    modalizeRef.current?.close();
-  }, []);
+  const {i18n} = useTranslation();
   const changeLangHandler = () => {
     i18n
       .changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')
@@ -46,7 +32,7 @@ export function Login() {
       });
   };
   return (
-    <SafeAreaView style={{paddingTop: StatusBar.currentHeight}}>
+    <SafeAreaView style={{flex: 1, paddingTop: StatusBar.currentHeight}}>
       <Image
         style={styles.backImage}
         source={assets.signupbBackground}
@@ -54,7 +40,10 @@ export function Login() {
       />
       <AppBar>
         <AppBar.Start>
-          <AppBar.Icon icon="ar" onPress={changeLangHandler} />
+          <AppBar.Icon
+            icon={I18nManager.isRTL ? 'en' : 'ar'}
+            onPress={changeLangHandler}
+          />
         </AppBar.Start>
         <AppBar.End>
           <AppBar.Icon icon="logo" />
@@ -62,17 +51,9 @@ export function Login() {
       </AppBar>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Welcome />
-        <LoginForm {...{openDrawer}} />
-        <LoginFooter {...{closeDrawer}} />
+        <LoginForm />
+        <LoginFooter />
       </ScrollView>
-      <Modalize
-        ref={modalizeRef}
-        handlePosition="inside"
-        overlayStyle={{backgroundColor: 'rgba(28, 36, 55, 0.77)'}}
-        modalStyle={{borderTopEndRadius: 30, borderTopStartRadius: 30}}
-        adjustToContentHeight>
-        <FingerPrint {...{closeDrawer}} />
-      </Modalize>
     </SafeAreaView>
   );
 }
